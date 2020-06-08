@@ -1,0 +1,28 @@
+.decrement,
+.increment {
+    width: 100px;
+    height: 50px;
+    background: #0a5b80;
+    color:#fca903;
+    font-size: 30px;
+    border: none;
+    outline: none;
+    margin: 2px;
+}
+
+.decrement:active,
+.increment:active {
+    background:#0b85bd;
+}
+
+
+.counter {
+    width: 230px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.count {
+    font-size: 70px;
+    color:#fca903;
+}
