@@ -1,4 +1,4 @@
-export function createStore(reducer, initialState) {
+export default function createStore(reducer, initialState) {
     let state = initialState;
     let callbacks = [];
 

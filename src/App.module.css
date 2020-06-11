@@ -1,5 +1,4 @@
-.decrement,
-.increment {
+.buttons button {
     width: 100px;
     height: 50px;
     background: #0a5b80;
@@ -10,14 +9,16 @@
     margin: 2px;
 }
 
-.decrement:active,
-.increment:active {
+.buttons button:active {
     background:#0b85bd;
 }
 
+.buttons button:hover {
+    opacity: 0.7;
+}
 
 .counter {
-    width: 230px;
+    width: auto;
     margin: 100px auto;
     text-align: center;
 }
