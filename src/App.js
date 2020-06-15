@@ -1,10 +1,12 @@
 import React from 'react';
 import s from './App.module.css';
-import Store from './store';
+// import Store from './store';
+import { createStore } from 'redux';
 
-const initialState = { count: 4 };
 
-function updateState(state, action) {
+const initialState = { count: 3 };
+
+function reducer(state = { count: 0 }, action) { // createStore - прежнее название
   switch (action.type) {
     case 'INCREMENT': return { count: state.count + action.amount };
     case 'DECREMENT': return { count: state.count - action.amount };
@@ -17,7 +19,7 @@ const incrementAction = { type: 'INCREMENT', amount: 3 };
 const decrementAction = { type: 'DECREMENT', amount: 5 };
 const resetAction = { type: 'RESET' };
 
-const store = new Store(updateState, initialState); // это наш объект импортируемый из /store
+const store = new createStore(reducer, initialState); // это наш объект ,импортируемый из /store -> зетем заменяем название Store на createStore
 
 class App extends React.Component {
   constructor(props) {
@@ -34,22 +36,23 @@ class App extends React.Component {
 
   increment() {
     // this.setState({ count: this.state.count + 1 });
-    store.update(incrementAction);
+    store.dispatch(incrementAction); // update -> dispatch
   }
 
   decrement() {
     // this.setState({ count: this.state.count - 1 });
-    store.update(decrementAction);
+    store.dispatch(decrementAction);
   }
 
   reset() {
-    store.update(resetAction);
+    store.dispatch(resetAction);
   }
-
+  // state -> getState()
   render() {
+    const count = store.getState().count;
     return (
       <div className={s.counter}>
-        <span className={s.count}>{store.state.count}</span>
+        <span className={s.count}>{count}</span>
 
         <div className={s.buttons}>
           <button className={s.decrement} onClick={this.decrement}>-</button>
