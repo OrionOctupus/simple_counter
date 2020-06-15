@@ -8,16 +8,30 @@ const initialState = { count: 3 };
 
 function reducer(state = { count: 0 }, action) { // createStore - прежнее название
   switch (action.type) {
-    case 'INCREMENT': return { count: state.count + action.amount };
+    case 'INCREMENT': return { count: state.count + +action.amount };
     case 'DECREMENT': return { count: state.count - action.amount };
     case 'RESET': return initialState;
     default: return state;
   }
 }
 
-const incrementAction = { type: 'INCREMENT', amount: 3 };
-const decrementAction = { type: 'DECREMENT', amount: 5 };
-const resetAction = { type: 'RESET' };
+// const incrementAction = { type: 'INCREMENT', amount: 3 };
+// const decrementAction = { type: 'DECREMENT', amount: 5 };
+// const resetAction = { type: 'RESET' };
+
+//AC - action creator
+
+function incrementAC(amount) {
+  return { type: 'INCREMENT', amount: amount };
+};
+
+function decrementAC(amount) {
+  return { type: 'DECREMENT', amount: amount };
+};
+
+function resetAC() {
+  return { type: 'RESET' };
+};
 
 const store = new createStore(reducer, initialState); // это наш объект ,импортируемый из /store -> зетем заменяем название Store на createStore
 
@@ -36,16 +50,18 @@ class App extends React.Component {
 
   increment() {
     // this.setState({ count: this.state.count + 1 });
-    store.dispatch(incrementAction); // update -> dispatch
+    let amount = this.refs.amount.value;
+    store.dispatch(incrementAC(amount)); // update -> dispatch
   }
 
   decrement() {
     // this.setState({ count: this.state.count - 1 });
-    store.dispatch(decrementAction);
+    let amount = this.refs.amount.value;
+    store.dispatch(decrementAC(amount));
   }
 
   reset() {
-    store.dispatch(resetAction);
+    store.dispatch(resetAC());
   }
   // state -> getState()
   render() {
@@ -59,6 +75,7 @@ class App extends React.Component {
           <button className={s.reser} onClick={this.reset}>R</button>
           <button className={s.increment} onClick={this.increment}>+</button>
         </div>
+        <input type="number" ref='amount' defaultValue="1" />
       </div>
     )
   }

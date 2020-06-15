@@ -27,3 +27,12 @@
     font-size: 70px;
     color:#fca903;
 }
+
+input[type="number"] {
+    width: 98px;
+    outline: none;
+    border: none;
+    background: #0a5b80;
+    color:#fca903;
+    font-size: 30px;
+}
