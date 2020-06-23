@@ -32,7 +32,7 @@ class App extends React.Component {
   }
 
   handleDelete(id) {
-    let todos = this.state.todos.filter(todo => todo.id !== id);
+    let todos = this.state.todos.filter(item => item.id !== id);
     console.log(id);
     this.setState({ todos: todos });
   }

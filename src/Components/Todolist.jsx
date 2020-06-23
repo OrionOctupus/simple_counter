@@ -8,7 +8,7 @@ function Todolist(props) {
 
     return (
         <div className='container'>
-            <Header title={props.title} />
+            <Header title={props.title} todos={props.todos} />
             <section className='todoTitle'>
                 {props.todos.map(item => {
                     return <Todo
