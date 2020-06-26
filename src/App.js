@@ -17,6 +17,8 @@ class App extends React.Component {
 
     this.handleStatusChange = this.handleStatusChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleStatusChange(id) {
@@ -37,6 +39,35 @@ class App extends React.Component {
     this.setState({ todos: todos });
   }
 
+  handleAdd(title) {
+    let todo = {
+      id: this.nextId(),
+      title: title,
+      completed: false
+    };
+
+    let todos = [...this.state.todos, todo];
+
+    this.setState({ todos: todos });
+  }
+
+  nextId() {
+    this._nextId = this._nextId || 6;
+    return this._nextId++;
+  }
+
+  handleEdit(id, title) {
+    let todos = this.state.todos.map((item) => {
+      if (item.id === id) {
+        item.title = title;
+      }
+
+      return item;
+    });
+
+    this.setState({ todos });
+  }
+
   render() {
     console.log('перерисовка')
     return (
@@ -46,6 +77,8 @@ class App extends React.Component {
           todos={this.state.todos}
           onStatusChange={this.handleStatusChange}
           handleDelete={this.handleDelete}
+          handleAdd={this.handleAdd}
+          onEdit={this.handleEdit}
         />
         {/* <Counter /> */}
       </div>
