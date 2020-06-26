@@ -33,7 +33,11 @@ class Todolist extends React.Component {
                     })}
                 </section>
                 <Form onAdd={this.props.handleAdd} />
-                <Button className='icon show' icon='visibility' onClick={() => this.setState({ showT: !this.state.showT })} />
+                <Button
+                    className='icon show'
+                    icon={this.state.showT ? 'timer_off' : 'timer'}
+                    onClick={() => this.setState({ showT: !this.state.showT })}
+                />
             </div>
         )
     }
